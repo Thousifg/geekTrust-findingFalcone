@@ -58,8 +58,10 @@ class App extends React.Component {
   isAllSelected = () => {
     let planet_names = getSelectedPlanets(this.props.state);
     let vehicle_names = getSelectedVehicles(this.props.state);
-    return planet_names.length === NUMBER_OF_DESTINATIONS &&
+    return (
+      planet_names.length === NUMBER_OF_DESTINATIONS &&
       vehicle_names.length === NUMBER_OF_DESTINATIONS
+    );
   };
 
   findFalcone = async () => {
@@ -91,7 +93,7 @@ class App extends React.Component {
         <div className="app">
           <header className="header">Finding Falcone!</header>
           {this.props.state.planets.length > 0 &&
-            this.props.state.vehicles.length > 0 ? (
+          this.props.state.vehicles.length > 0 ? (
             <Grid container spacing={3}>
               {Object.keys(this.props.state.destinations).map((dest) => (
                 <Grid key={dest} item xs={12} md={6} lg={3}>
@@ -105,8 +107,9 @@ class App extends React.Component {
                 </Grid>
               ))}
             </Grid>
-          ) : <CircularProgress />
-          }
+          ) : (
+            <CircularProgress />
+          )}
           <Grid container spacing={3} justify="center" alignItems="center">
             <Grid item xs={12} sm={6} md={4} lg={3}>
               <Card variant="outlined">
